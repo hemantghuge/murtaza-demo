@@ -24,9 +24,22 @@ class handDetector():
 				if draw:
 					self.mpDraw.draw_landmarks(img, handLms, self.mpHands.HAND_CONNECTIONS)
 
-#				for id, lm in enumerate(handLms.landmark):
+		#return img
 
-		return img
+	def findPosition(self, img, handNo=0, draw=True):
+
+		lmList = []
+
+		if self.results.multi_hand_landmarks:
+			myHand = self.results.multi_hand_landmarks[handNo]
+			for id, lm in enumerate(myHand.landmark):
+				h, w, c = img.shape
+				#print(type(lm))
+				cx, cy = int(lm.x * w), int(lm.y *h)
+				lmList.append([id, cx, cy])
+				cv2.circle(img, (cx, cy), 7, (255, 255, 255), cv2.FILLED)
+
+		return lmList
 
 
 def main():
@@ -45,7 +58,13 @@ def main():
 		counter += 1
 
 		success, img = cap.read()
-		img = detector.findHands(img)
+
+		detector.findHands(img)
+
+		lmList = detector.findPosition(img)
+
+		#if lmList:
+		#	print(lmList[5])
 
 		if time.time() - cTime > 1:
 			fps = counter/(time.time()-cTime)

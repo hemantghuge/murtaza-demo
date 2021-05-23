@@ -23,5 +23,15 @@
         "filename": "HandTrackingModule.py",
         "device_name": "lenono-Lenovo-ideapad-330-15IKB",
         "fps": 22
+    },
+    "5": {
+        "filename": "HandTrackingModule.py",
+        "device_name": "lenono-Lenovo-ideapad-330-15IKB",
+        "fps": 14
+    },
+    "6": {
+        "filename": "HandTrackingExample.py",
+        "device_name": "lenono-Lenovo-ideapad-330-15IKB",
+        "fps": 0
     }
 }
