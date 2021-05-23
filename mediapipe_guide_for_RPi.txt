@@ -1,0 +1,2 @@
+https://github.com/koenvervloesem/bazel-on-arm
+https://github.com/jiuqiant/mediapipe_python_aarch64
