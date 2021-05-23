@@ -1,0 +1,27 @@
+{
+    "0": {
+        "filename": "dummy.py",
+        "device_name": "dummy",
+        "fps": 30
+    },
+    "1": {
+        "filename": "saveStatsModule.py",
+        "device_name": "lenono-Lenovo-ideapad-330-15IKB",
+        "fps": 24
+    },
+    "2": {
+        "filename": "HandTrackingModule.py",
+        "device_name": "lenono-Lenovo-ideapad-330-15IKB",
+        "fps": 0
+    },
+    "3": {
+        "filename": "HandTrackingModule.py",
+        "device_name": "lenono-Lenovo-ideapad-330-15IKB",
+        "fps": 23
+    },
+    "4": {
+        "filename": "HandTrackingModule.py",
+        "device_name": "lenono-Lenovo-ideapad-330-15IKB",
+        "fps": 22
+    }
+}

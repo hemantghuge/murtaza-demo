@@ -1,7 +1,7 @@
 import cv2
 import time
 import mediapipe as mp
-
+import saveStatsModule as stats
 
 class handDetector():
 	def __init__(self, mode=False, maxHands=2, detectionConf=0.5, trackConf=0.5):
@@ -32,6 +32,7 @@ class handDetector():
 def main():
 
 	fps = 0
+	sTime = time.time()
 	cTime = time.time()
 	counter = 0
 
@@ -57,6 +58,8 @@ def main():
 		if cv2.waitKey(1) & 0xFF == ord('q'):
 			break
 
+		if int(time.time() - sTime) % 20 == 0:
+			stats.saveStats(__file__, int(fps))
 
 if __name__ == "__main__":
 	main()
