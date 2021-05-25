@@ -15,7 +15,6 @@ def getContours(img, cThreshold=[100, 100], showCanny=False, minArea=1000, filte
 
 	contours, hierarchy = cv2.findContours(imgThresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
-
 	finalContours = []
 	for i in contours:
 		area = cv2.contourArea(i)
@@ -25,6 +24,9 @@ def getContours(img, cThreshold=[100, 100], showCanny=False, minArea=1000, filte
 			approx = cv2.approxPolyDP(i, 0.02*peri, True)
 			bbox = cv2.boundingRect(approx)
 
+			#print('check')
+			#print(approx)
+			#print(bbox)
 
 			if filter > 0:
 				if len(approx) == filter:
@@ -60,7 +62,7 @@ def reorder(myPoints):
 
 	return myPointsNew
 
-def warpImg(img, points, w, h, pad=10):
+def warpImg(img, points, w, h, pad=5):
 	#print(points)
 	points = reorder(points)
 
@@ -71,3 +73,30 @@ def warpImg(img, points, w, h, pad=10):
 	imgWarp = imgWarp[pad:imgWarp.shape[0]-pad, pad:imgWarp.shape[1]-pad]
 
 	return imgWarp
+
+def findDist(pts1, pts2):
+	return ((pts2[0] - pts1[0])**2 + (pts2[1] - pts1[1])**2 )**0.5
+
+def rescaleImage(img, reqHeight=500):
+	#print(img.shape[0], img.shape[1])
+	reqWidth = int(reqHeight/img.shape[0]*img.shape[1])
+
+	#print(reqHeight, reqWidth)
+	resizedImg = cv2.resize(img, (reqWidth, reqHeight), interpolation=cv2.INTER_AREA)
+
+	return resizedImg
+
+def concatenateImage(img1, img2):
+
+	if img1.shape[0] == img2.shape[0]:
+		nH = img1.shape[0]
+		nW = img1.shape[1]+img2.shape[1]
+
+		blank_image = np.zeros((nH, nW, 3), np.uint8)
+
+		blank_image[:, 0:img1.shape[1]] = img1
+		blank_image[:, img1.shape[1]:] = img2
+
+		#cv2.imshow('concatImage', blank_image)
+
+		return blank_image
